@@ -77,7 +77,9 @@ namespace gInk
 			//SelectObject(blankcanvusDc, BlankCanvus);
 			gCanvus = Graphics.FromHdc(canvusDc);
 			gCanvus.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
-			gOneStrokeCanvus = Graphics.FromHdc(onestrokeDc);
+            gCanvus.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            gCanvus.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+            gOneStrokeCanvus = Graphics.FromHdc(onestrokeDc);
 			gOneStrokeCanvus.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
 			if (Root.AutoScroll)
 			{
@@ -228,8 +230,12 @@ namespace gInk
 		}
 		public void DrawStrokes(Graphics g)
 		{
-			if (Root.InkVisible)
-				Root.FormCollection.IC.Renderer.Draw(g, Root.FormCollection.IC.Ink.Strokes);
+            if (Root.InkVisible)
+            {
+                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+                Root.FormCollection.IC.Renderer.Draw(g, Root.FormCollection.IC.Ink.Strokes);
+            }
 		}
 
 		public void MoveStrokes(int dy)

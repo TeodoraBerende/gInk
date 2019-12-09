@@ -243,7 +243,8 @@ namespace gInk
 			IC.MouseUp += IC_MouseUp;
 			IC.CursorDown += IC_CursorDown;
 			IC.Stroke += IC_Stroke;
-			IC.DefaultDrawingAttributes.Width = 80;
+            IC.DefaultDrawingAttributes.FitToCurve = true;
+            IC.DefaultDrawingAttributes.Width = 80;
 			IC.DefaultDrawingAttributes.Transparency = 30;
 			IC.DefaultDrawingAttributes.AntiAliased = true;
 
